@@ -1,4 +1,4 @@
-name: flutter_syntax_view_new
+name: flutter_view_syntax
 description: A new Flutter project.
 
 # The following line prevents the package from being accidentally published to
@@ -23,6 +23,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  rich_text_controller:
 
 
   # The following adds the Cupertino Icons font to your application.

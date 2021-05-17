@@ -1,113 +1,459 @@
-import 'package:flutter/material.dart';
+import 'dart:ui';
 
-void main() {
-  runApp(MyApp());
-}
+import 'package:flutter_view_syntax/controllers.dart';
+import 'package:flutter/material.dart';
+import 'package:rich_text_controller/rich_text_controller.dart';
+import 'package:flutter_view_syntax/change_theme.dart';
+
+void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
+      title: 'RichText Controller Demo',
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: RichTextControllerDemo(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
-
+class RichTextControllerDemo extends StatefulWidget {
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _RichTextControllerDemoState createState() => _RichTextControllerDemoState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+class _RichTextControllerDemoState extends State<RichTextControllerDemo> {
+  final double _fontScaleFactor = 1.0;
+  static const  double fontSize = 12.0;
+  bool expanded = true;
+  static String chosenTheme = "dracula";
+  static Map<dynamic,dynamic> changeTheme =new ChangeTheme().selectTheme(chosenTheme);
+  static String language = "dart";
+  
 
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
+
+  static String code = r"""import 'dart:math' as math;
+
+// Coffee class is the best!
+class Coffee {
+  late int _temperature;
+
+  void heat() => _temperature = 100;
+  void chill() => _temperature = -5;
+
+  void sip() {
+    final bool isTooHot = math.max(37, _temperature) > 37;
+    if (isTooHot)
+      print("myyy liiips!");
+    else
+      print("mmmmm refreshing!");
+  }
+
+  int? get temperature => temperature;
+}
+void main() {
+  var coffee = Coffee();
+  coffee.heat();
+  coffee.sip();
+  coffee.chill();
+  coffee.sip();
+
+
+}
+/* And there
+        you have it */""";
+
+  int numLines = '\n'.allMatches(code).length + 1;
+  
+
+
+
+    
+  
+  // static RichTextController _controller = RichTextController(
+  //         patternMap: {
+           
+
+  //         RegExp(r'"""(?:[^"\\]|\\(.|\n))*"""'): changeTheme["commentStyle"],
+  //         RegExp(r'//(.)*\n'):changeTheme["commentStyle"],
+
+
+  //         RegExp('/\\*+[^*]*\\*+(?:[^/*][^*]*\\*+)*/'): changeTheme["commentStyle"],
+
+  //         RegExp(r'r".*"'):changeTheme["stringStyle"],
+
+  //         RegExp(r"r'.*'"):changeTheme["stringStyle"],
+  //         RegExp(r'"""(?:[^"\\]|\\(.|\n))*"""'):changeTheme["stringStyle"],
+  //         RegExp(r"'''(?:[^'\\]|\\(.|\n))*'''"):changeTheme["stringStyle"],
+  //         RegExp(r'"(?:[^"\\]|\\.)*"'):changeTheme["stringStyle"],
+  //         RegExp(r"'(?:[^'\\]|\\.)*'"):changeTheme["stringStyle"],
+
+  //          RegExp(r'\d+\.\d+'): changeTheme["numberStyle"],
+  //         RegExp(r'\d+'):changeTheme["numberStyle"],
+
+  //         RegExp(r'[\[\]{}().!=<>&\|\?\+\-\*/%\^~;:,]'):changeTheme["punctuationStyle"],
+
+  //         RegExp(r'@\w+'):changeTheme["keywordStyle"],
+
+  //         RegExp(r'\babstract|\bvoid|\bimport|\bas|\bclass|\blate|\bint|\bfinal|\bbool|\bif|\belse|\bget'):changeTheme["keywordStyle"],
+          
+  //         RegExp(r'\w+'): changeTheme["baseStyle"],
+
+  //         },
+  //     );
+
+  static RichTextController _controller = Controller().controller("dart", changeTheme);
+  
+  
+
+  
+  @override
+  void initState() {
+    // changeTheme =new ChangeTheme().selectTheme(chosenTheme);
+    //changeTheme.selectTheme("standard");
+
+      //    _controller = RichTextController(
+      //     patternMap: {
+           
+
+      //     RegExp(r'"""(?:[^"\\]|\\(.|\n))*"""'): changeTheme["commentStyle"],
+
+      //     RegExp('/\\*+[^*]*\\*+(?:[^/*][^*]*\\*+)*/'): changeTheme["commentStyle"],
+      // RegExp(r'//(.)*\n'):changeTheme["commentStyle"],
+
+      //     RegExp(r'r".*"'):changeTheme["stringStyle"],
+
+      //     RegExp(r"r'.*'"):changeTheme["stringStyle"],
+      //     RegExp(r'"""(?:[^"\\]|\\(.|\n))*"""'):changeTheme["stringStyle"],
+      //     RegExp(r"'''(?:[^'\\]|\\(.|\n))*'''"):changeTheme["stringStyle"],
+      //     RegExp(r'"(?:[^"\\]|\\.)*"'):changeTheme["stringStyle"],
+      //     RegExp(r"'(?:[^'\\]|\\.)*'"):changeTheme["stringStyle"],
+
+      //      RegExp(r'\d+\.\d+'): changeTheme["numberStyle"],
+      //     RegExp(r'\d+'):changeTheme["numberStyle"],
+
+      //     RegExp(r'[\[\]{}().!=<>&\|\?\+\-\*/%\^~;:,]'):changeTheme["punctuationStyle"],
+
+      //     RegExp(r'@\w+'):changeTheme["keywordStyle"],
+
+      //     RegExp(r'\babstract|\bvoid|\bimport|\bas|\bclass|\blate|\bint|\bfinal|\bbool|\bif|\belse|\bget'):changeTheme["keywordStyle"],
+          
+      //     RegExp(r'\w+'): changeTheme["baseStyle"],
+
+      //     },
+        
+      //    onMatch: (List<String> matches){
+           
+      //    }
+
+      // );
+
+      _controller.text =  code;
+
+    super.initState();
+  }
+
+  @override
+  void dispose(){
+    _controller.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
+
+    var inputBoxWidth = MediaQuery.of(context).size.width*5;
+    
     return Scaffold(
       appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
+        
       ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
+      body: Container(
+        color: changeTheme["backgroundColor"],
+        
+        
+        constraints: expanded ? BoxConstraints.expand() : null,
+        child: SingleChildScrollView(
+                  child: Column(
+                    children: <Widget>[
+                      Row(
+                        children: [
+                          Container(
+                            width: MediaQuery.of(context).size.width/2,
+                            child: Center(
+                              child: DropdownButton<String>(
+                                focusColor:Colors.white,
+                                value: chosenTheme,
+                                //elevation: 5,
+                                //style: TextStyle(color: Colors.white),
+                                iconEnabledColor:Colors.black,
+                                items: <String>[
+                                  'standard',
+                                  'dracula',
+                                  'ayuLight',
+                                  'ayuDark',
+                                  'gravityLight',
+                                  'gravityDark',
+                                  'monokaiSublime',
+                                  'obsidian',
+                                  'oceanSunset',
+                                  'vscodeDark',
+                                  'vscodeLight',
+                                  
+                                ].map<DropdownMenuItem<String>>((String value) {
+                                  return DropdownMenuItem<String>(
+                                    value: value,
+                                    child: Text(value,style:TextStyle(color:Colors.black),),
+                                  );
+                                }).toList(),
+                                hint:Text(
+                                  "Please choose a langauage",
+                                  style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 10,
+                                          fontWeight: FontWeight.w500),
+                                ),
+                                onChanged: (String value) {
+                                  setState(() {
+                                    chosenTheme = value;
+                                    changeTheme =new ChangeTheme().selectTheme(chosenTheme);
+
+                                    String _temp = _controller.text;
+
+                                    _controller = Controller().controller("dart", changeTheme);
+
+                                    _controller.text = _temp;
+
+                                    print(chosenTheme);
+                                  });
+                                },
+                              ),
+                            ),
+                          ),
+                          Container(
+                            width: MediaQuery.of(context).size.width/2,
+                            child: Center(
+                                child: DropdownButton<String>(
+                                  focusColor:Colors.white,
+                                  value: language,
+                                  //elevation: 5,
+                                  //style: TextStyle(color: Colors.white),
+                                  iconEnabledColor:Colors.black,
+                                  items: <String>[
+                                    'dart',
+                                    'standard',
+                                    'dracula',
+                                    'ayuLight',
+                                    'ayuDark',
+                                    'gravityLight',
+                                    'gravityDark',
+                                    'monokaiSublime',
+                                    'obsidian',
+                                    'oceanSunset',
+                                    'vscodeDark',
+                                    'vscodeLight',
+                                    
+                                  ].map<DropdownMenuItem<String>>((String value) {
+                                    return DropdownMenuItem<String>(
+                                      value: value,
+                                      child: Text(value,style:TextStyle(color:Colors.black),),
+                                    );
+                                  }).toList(),
+                                  hint:Text(
+                                    "Please choose a langauage",
+                                    style: TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 10,
+                                            fontWeight: FontWeight.w500),
+                                  ),
+                                  onChanged: (String value) {
+                                    setState(() {
+                                      language = value;
+                                      changeTheme =new ChangeTheme().selectTheme(chosenTheme);
+
+                                      String _temp = _controller.text;
+
+                                      _controller = Controller().controller("dart", changeTheme);
+
+                                      _controller.text = _temp;
+
+                                      print(chosenTheme);
+                                    });
+                                  },
+                                ),
+                            ),
+                          )
+                        ],
+                      ),
+//                       DropdownButton<String>(
+//   focusColor:Colors.white,
+//   value: chosenTheme,
+//   //elevation: 5,
+//   //style: TextStyle(color: Colors.white),
+//   iconEnabledColor:Colors.black,
+//   items: <String>[
+//     'standard',
+//     'dracula',
+//     'ayuLight',
+//     'ayuDark',
+//     'gravityLight',
+//     'gravityDark',
+//     'monokaiSublime',
+//     'obsidian',
+//     'oceanSunset',
+//     'vscodeDark',
+//     'vscodeLight',
+    
+//   ].map<DropdownMenuItem<String>>((String value) {
+//     return DropdownMenuItem<String>(
+//       value: value,
+//       child: Text(value,style:TextStyle(color:Colors.black),),
+//     );
+//   }).toList(),
+//   hint:Text(
+//     "Please choose a langauage",
+//     style: TextStyle(
+//             color: Colors.black,
+//             fontSize: 10,
+//             fontWeight: FontWeight.w500),
+//   ),
+//   onChanged: (String value) {
+//     setState(() {
+//       chosenTheme = value;
+//        changeTheme =new ChangeTheme().selectTheme(chosenTheme);
+
+//        String _temp = _controller.text;
+
+       
+
+//       // _controller = RichTextController(
+//       //       patternMap: {
+             
+
+//       //       RegExp(r'"""(?:[^"\\]|\\(.|\n))*"""'): changeTheme["commentStyle"],
+//       //       RegExp(r'//(.)*\n'):changeTheme["commentStyle"],
+//       //       RegExp('/\\*+[^*]*\\*+(?:[^/*][^*]*\\*+)*/'): changeTheme["commentStyle"],
+
+
+//       //       RegExp(r'r".*"'):changeTheme["stringStyle"],
+//       //       RegExp(r"r'.*'"):changeTheme["stringStyle"],
+//       //       RegExp(r'"""(?:[^"\\]|\\(.|\n))*"""'):changeTheme["stringStyle"],
+//       //       RegExp(r"'''(?:[^'\\]|\\(.|\n))*'''"):changeTheme["stringStyle"],
+//       //       RegExp(r'"(?:[^"\\]|\\.)*"'):changeTheme["stringStyle"],
+//       //       RegExp(r"'(?:[^'\\]|\\.)*'"):changeTheme["stringStyle"],
+
+//       //        RegExp(r'\d+\.\d+'): changeTheme["numberStyle"],
+//       //       RegExp(r'\d+'):changeTheme["numberStyle"],
+
+//       //       RegExp(r'[\[\]{}().!=<>&\|\?\+\-\*/%\^~;:,]'):changeTheme["punctuationStyle"],
+
+//       //       RegExp(r'@\w+'):changeTheme["keywordStyle"],
+//       //       RegExp(r'\babstract|\bvoid|\bimport|\bas|\bclass|\blate|\bint|\bfinal|\bbool|\bif|\belse|\bget'):changeTheme["keywordStyle"],
+            
+//       //       RegExp(r'\w+'): changeTheme["baseStyle"],
+
+//       //       },
+          
+
+//       // );
+
+//       _controller = Controller().controller("dart", changeTheme);
+
+//       _controller.text = _temp;
+
+//       print(chosenTheme);
+//     });
+//   },
+// ),
+                      
+                      Scrollbar(
+              
+              
+                  child: SingleChildScrollView(
+                                  child: SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                                    child: Row(
+                                      
+                        
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisSize: MainAxisSize.max,
+                      children: <Widget>[
+                        
+                        Container(
+                          
+                          margin: EdgeInsets.only(left: 20,  top: 25, bottom: 10),
+
+                                              child: SingleChildScrollView(
+                                            child: Column(
+                            // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              mainAxisSize: MainAxisSize.min,
+                                children: <Widget>[
+                                  for (int i = 1; i <= numLines; i++)
+                                  Padding(padding: EdgeInsets.only( top:2),
+                                    child: RichText(
+                                      
+                                      
+                                        textScaleFactor: _fontScaleFactor,
+                                        text: TextSpan(
+                                          
+                                          
+                                          style: TextStyle(
+                                                fontFamily: 'monospace',
+                                                fontSize: fontSize, 
+                                                color: changeTheme["linesCountColor"]
+                                                ),
+                                          text: "$i",
+                                        ))),
+                            ]),
+                          ),
+                        ),
+                      VerticalDivider(width: 5),
+
+
+                      Container(
+                        
+                        width: inputBoxWidth*7,
+                
+                
+                        margin: EdgeInsets.only(left: 0, right: 15, top: 25, bottom: 10),
+                        child: SingleChildScrollView(
+                          
+                                child: new  EditableText(   
+                                
+                                   
+                                    textScaleFactor: _fontScaleFactor,     
+                              autofocus: true,
+                              maxLines: null,
+                              backgroundCursorColor: Colors.amber,
+
+                              keyboardType: TextInputType.multiline,
+                              controller: _controller,
+                              readOnly: false, cursorColor: Colors.red, focusNode: FocusNode(), style: TextStyle(color: Colors.black),
+                              onChanged: (val) {
+                                code = val;
+                                setState(() {
+                                  numLines = '\n'.allMatches(code).length + 1;
+                                });
+                              },
+                ),
+                        ),
+                
+                
+                ),
+
+              ]
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
+                    ),
+                  ),
+            
+      ),]
+          ),
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      )
+
     );
   }
 }
