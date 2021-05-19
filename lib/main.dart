@@ -244,18 +244,9 @@ void main() {
                                   iconEnabledColor:Colors.black,
                                   items: <String>[
                                     'dart',
-                                    'standard',
-                                    'dracula',
-                                    'ayuLight',
-                                    'ayuDark',
-                                    'gravityLight',
-                                    'gravityDark',
-                                    'monokaiSublime',
-                                    'obsidian',
-                                    'oceanSunset',
-                                    'vscodeDark',
-                                    'vscodeLight',
-                                    
+                                    'c',
+                                    'c#',
+                                    'php',                                    
                                   ].map<DropdownMenuItem<String>>((String value) {
                                     return DropdownMenuItem<String>(
                                       value: value,
@@ -276,7 +267,7 @@ void main() {
 
                                       String _temp = _controller.text;
 
-                                      _controller = Controller().controller("dart", changeTheme);
+                                      _controller = Controller().controller(language, changeTheme);
 
                                       _controller.text = _temp;
 
