@@ -311,6 +311,46 @@ class Controller {
       );
         
         break;
+      case "swift":
+      return RichTextController(
+          patternMap: {
+            
+      /// Block comments
+          RegExp('/\\*+[^*]*\\*+(?:[^/*][^*]*\\*+)*/'): changeTheme["commentStyle"],  
+      /// Line comments
+          RegExp(r'//(.)*\n'):changeTheme["commentStyle"],     
+            
+        /// Raw r"String"
+          
+          RegExp(r'r".*"'):changeTheme["stringStyle"],
+            /// Raw r'String'
+          RegExp(r"r'.*'"):changeTheme["stringStyle"],
+            
+         /// Multiline """String"""
+          RegExp(r'"""(?:[^"\\]|\\(.|\n))*"""'):changeTheme["stringStyle"],
+            
+            /// Multiline '''String'''
+          RegExp(r"'''(?:[^'\\]|\\(.|\n))*'''"):changeTheme["stringStyle"],
+            /// "String" "value"
+          RegExp(r'"(?:[^"\\]|\\.)*"'):changeTheme["stringStyle"],
+            /// 'String' 'value'
+          RegExp(r"'(?:[^'\\]|\\.)*'"):changeTheme["stringStyle"],
+            
+           RegExp(r'\d+\.\d+'): changeTheme["numberStyle"],
+          RegExp(r'\d+'):changeTheme["numberStyle"],
+          RegExp(r'[\[\]{}().!=<>&\|\?\+\-\*/%\^~;:,]'):changeTheme["punctuationStyle"],
+          RegExp(r'@\w+'):changeTheme["keywordStyle"],
+          RegExp(r'\bclass|\bfunc|\blet|\bpublic|\btypealias|\bdeinit|\bimport|\boperator|\bstatic|\bvar|\benum|\bInit|\bprivate|\bstruct|\bextension|\binternal|\bprotocol|\bsubscript|\bbreak|\bdo|\bif|\bwhere|\bcase|\belse|\blet|\bin|\bwhile|\bcontinue|\bfallthrough|\breturn|\bdefault|\bfor|\bswitch|\bas|\bnil|\btrue|\b_LINE_|\bdynamicType|\bself|\b_COLUMN_|\bfalse|\bSelf|\b_FILE_|\bis|\bsuper|\b_FUNCTION_|\bassociativity|\bfinal|\blazy|\bnonmutating|\bprecedence|\bright|\bweak|\bcrossinline|\bget|\bleft|\boptional|\bprefix|\bset|\bwillSet|\bdynamic|\binfix|\bmutating|\boverride|\bprotocol|\bType|\bdidSet|\bnone|\bpostfix|\brequired|\bunowned|\bInt|\bInt8|\bUInt|\bFloat|\bDouble|\bBool|\bString|\bCharacter'):changeTheme["keywordStyle"],
+          RegExp(r'[A-Z](\w+)'):changeTheme["classStyle"],
+          
+          RegExp(r'\w+'): changeTheme["baseStyle"],
+          },
+        
+         
+      );
+        
+        break;
+
 
       default:
     }
