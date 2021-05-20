@@ -222,8 +222,9 @@ class Controller {
       );
         
         break;
-      case "c#":
-      return RichTextController(
+     
+          case "Rust":{
+        return RichTextController(
           patternMap: {
             RegExp('/\\*+[^*]*\\*+(?:[^/*][^*]*\\*+)*/'): changeTheme["commentStyle"],
             RegExp(r'//(.)*\n'): changeTheme["commentStyle"],
@@ -240,7 +241,7 @@ class Controller {
         );
         
 
-      
+      }
       break;
 
       case "Scala":
