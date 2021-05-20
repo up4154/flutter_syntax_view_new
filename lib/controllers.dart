@@ -329,6 +329,47 @@ class Controller {
         
         break;
 
+         case "Ruby":
+      return RichTextController(
+          patternMap: {
+            
+      /// multiline comments
+       // RegExp('(\n=begin)+(.)*(\n)*(.)*(\n=end)'): changeTheme["commentStyle"],
+          RegExp('(\n=begin)+(.)*(\n)*(.)*(\n=end)'): changeTheme["commentStyle"],
+      /// Line comments
+          RegExp(r'#(.)*\n'):changeTheme["commentStyle"],     
+            
+        /// Raw r"String"
+          
+          RegExp(r'r".*"'):changeTheme["stringStyle"],
+            /// Raw r'String'
+          RegExp(r"r'.*'"):changeTheme["stringStyle"],
+            
+         /// Multiline """String"""
+          RegExp(r'"""(?:[^"\\]|\\(.|\n))*"""'):changeTheme["stringStyle"],
+            
+            /// Multiline '''String'''
+          RegExp(r"'''(?:[^'\\]|\\(.|\n))*'''"):changeTheme["stringStyle"],
+            /// "String" "value"
+          RegExp(r'"(?:[^"\\]|\\.)*"'):changeTheme["stringStyle"],
+            /// 'String' 'value'
+          RegExp(r"'(?:[^'\\]|\\.)*'"):changeTheme["stringStyle"],
+            
+           RegExp(r'\d+\.\d+'): changeTheme["numberStyle"],
+          RegExp(r'\d+'):changeTheme["numberStyle"],
+          RegExp(r'[\[\]{}().!=<>&\|\?\+\-\*/%\^~;:,]'):changeTheme["punctuationStyle"],
+          
+          RegExp(r'\b__ENCODING__|\b__LINE__|\b__FILE__|\bBEGIN|\bEND|\balias|\band|\bbegin|\bbreak|\bclass|\bdef|\bdefined?|\bdo|\belse|\belsif|\bend|\bensure|\bfalse|\bfor|\bif|\bin|\bmodule|\bnext|\bnil|\bnot|\bor|\bredo|\brescue|\bretry|\breturn|\bself|\bsuper|\bthen|\btrue|\bundef|\bunless|\buntill|\bwhen|\bwhile|\byield'):changeTheme["keywordStyle"],
+          RegExp(r'[A-Z](\w+)'):changeTheme["classStyle"],
+          
+          RegExp(r'\w+'): changeTheme["baseStyle"],
+          },
+        
+         
+      );
+        
+        break;          
+
 
       default:
     }
