@@ -85,8 +85,46 @@ class Controller{
 
 
         
+      break;
+      case "javascript":
+      return RichTextController(
+          patternMap: {
+            
+      /// Block comments
+          RegExp('/\\*+[^*]*\\*+(?:[^/*][^*]*\\*+)*/'): changeTheme["commentStyle"],  
+      /// Line comments
+          RegExp(r'//(.)*\n'):changeTheme["commentStyle"],     
+            
+        /// Raw r"String"
+          
+          RegExp(r'r".*"'):changeTheme["stringStyle"],
+            /// Raw r'String'
+          RegExp(r"r'.*'"):changeTheme["stringStyle"],
+            
+         /// Multiline """String"""
+          RegExp(r'"""(?:[^"\\]|\\(.|\n))*"""'):changeTheme["stringStyle"],
+            
+            /// Multiline '''String'''
+          RegExp(r"'''(?:[^'\\]|\\(.|\n))*'''"):changeTheme["stringStyle"],
+            /// "String" "value"
+          RegExp(r'"(?:[^"\\]|\\.)*"'):changeTheme["stringStyle"],
+            /// 'String' 'value'
+          RegExp(r"'(?:[^'\\]|\\.)*'"):changeTheme["stringStyle"],
+            
+           RegExp(r'\d+\.\d+'): changeTheme["numberStyle"],
+          RegExp(r'\d+'):changeTheme["numberStyle"],
+          RegExp(r'[\[\]{}().!=<>&\|\?\+\-\*/%\^~;:,]'):changeTheme["punctuationStyle"],
+          RegExp(r'@\w+'):changeTheme["keywordStyle"],
+          RegExp(r'\babstract|\bassert|\bbreak|\bcase|\bcatch|\bclass|\bcontinue|\bdefault|\bdo|\belse|\benum|\bextends|\bfinal|\bfinally|\bfor|\bif|\bimplements|\bimport|\binstanceof|\binterface|\bnative|\bnew|\bpackage|\bprivate|\bprotected|\bpublic|\breturn|\bstatic|\bsuper|\bswitch|\bsynchronized|\bthrow|\bthrows|\btransient|\bvoid|\bvolatile|\bwhile|\bbyte|\bshort|\bint|\blong|\bfloat|\bdouble|\bboolean|\bchar'):changeTheme["keywordStyle"],
+          RegExp(r'[A-Z](\w+)'):changeTheme["classStyle"],
+          
+          RegExp(r'\w+'): changeTheme["baseStyle"],
+          },
+        
+         
+      );
+        
         break;
-
         case "c#":
       return RichTextController(
           patternMap: {
