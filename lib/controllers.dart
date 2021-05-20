@@ -99,29 +99,7 @@ class Controller {
       
 
       break;
-            
-    
-      case "dart":
-      return RichTextController(
-          patternMap: {
-            RegExp('/\\*+[^*]*\\*+(?:[^/*][^*]*\\*+)*/'):
-                changeTheme["commentStyle"],
-            RegExp(r'//(.)*\n'): changeTheme["commentStyle"],
-            RegExp(r'r".*"'): changeTheme["stringStyle"],
-            RegExp(r'"(?:[^"\\]|\\.)*"'): changeTheme["stringStyle"],
-            RegExp(r'\d+\.\d+'): changeTheme["numberStyle"],
-            RegExp(r'\d+'): changeTheme["numberStyle"],
-            RegExp(r'[\[\]{}().!=<>&\|\?\+\-\*/%\^~;:,]'):
-                changeTheme["punctuationStyle"],
-            RegExp(r'@\w+'): changeTheme["keywordStyle"],
-            RegExp(r'\babstract|\bas|\bbase|\bbool|\bbreak|\bbyte|\bcase|\bcatch|\bchar|\bchecked|\bclass|\bconst|\bcontinue|\bdecimal|\bdefault|\bdelegate|\bdo|\bdouble|\belse|\benum|\bevent|\bexplicit|\bextern|\bfalse|\bfinally|\bfixed|\bfloat|\bfor|\bforeach|\bgoto|\bif|\bimplicit|\bin|\bint|\binterface|\binternal|\bis|\block|\blong|\bnamespace|\bnew|\bnull|\bobject|\boperator|\bout|\boverride|\bparams|\bprivate|\bprotected|\bpublic|\breadonly|\bref|\breturn|\bsbyte|\bsealed|\bshort|\bsizeof|\bstackalloc|\bstatic|\bstring|\bstruct|\bswitch|\bthis|\bthrow|\btrue|\btry|\btypeof|\buint|\bulong|\bunchecked|\bunsafe|\bushort|\busing|\bvirtual|\bvoid|\bvolatile|\bwhile|\badd|\band|\balias|\bascending|\basync|\bawait|\bby|\bdescending|\bdynamic|\bequals|\bfrom|\bget|\bglobal|\bgroup|\binit|\binto|\bjoin|\blet|\bnameof|\bnint|\bnot|\bnotnull|\bnuint|\bon|\bor|\borderby|\bpartial|\brecord|\bremove|\bselect|\bset|\bvalue|\bvar|\bwith|\byield|\bclass|\binterface|\bdelegate|\brecord|\bdynamic|\bobject|\bstring|\bthis|\bpublic|\bprotected|\binternal|\bprotected|\binternal|\bprivate|\bprivate|\bprotected|\breadonly|\bstruct|\bchar|\bshort|\bint|\blong|\blong long|\bdouble|\bfloat|\bbool|\bunsigned|\bsigned|\bdecimal'):
-                changeTheme["keywordStyle"],
-            RegExp(r'[A-Z](\w+)'): changeTheme["classStyle"],
-            RegExp(r'\w+'): changeTheme["baseStyle"],
-          },
-
-          //
-        );
+      
 
       case "php":
         return RichTextController(
