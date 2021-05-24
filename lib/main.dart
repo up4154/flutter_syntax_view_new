@@ -163,7 +163,7 @@ void main() {
                         //elevation: 5,
                         //style: TextStyle(color: Colors.white),
                         iconEnabledColor: Colors.black,
-                        items: <String>['dart', 'c', 'c#', 'php', 'Rust']
+                        items: <String>['dart', 'c', 'cpp', 'java', 'javascript', 'Scala', 'Kotlin', 'Swift', 'Ruby', 'python', 'go', 'perl', 'c#', 'php', 'Rust']
                             .map<DropdownMenuItem<String>>((String value) {
                           return DropdownMenuItem<String>(
                             value: value,

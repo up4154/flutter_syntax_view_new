@@ -85,12 +85,12 @@ class Controller {
           RegExp(r'\d+\.\d+'): changeTheme["numberStyle"],
           RegExp(r'\d+'):changeTheme["numberStyle"],
 
-          RegExp(r'[\[\]{}().!=><#&\|\?\+\-\*/%\^~;:,]'):changeTheme["punctuationStyle"],
+          RegExp(r'[\[\]().!=><#&\|\?\+\-\*/%\^~;:,]'):changeTheme["punctuationStyle"],
 
           RegExp(r'@\w+'):changeTheme["keywordStyle"],
-          RegExp(r'(#ifdef)|(#ifndef)|(#if)|(#else)|(#elif)|(#endif)|(#pragma)'):changeTheme["keywordStyle"],
+          RegExp(r'#?(ifdef|ifndef|if|else|elif|endif|pragma|include)'):changeTheme["keywordStyle"],
           
-          RegExp(r'_\binclude|\balignas|\balignof|\band|\band_eq|\basm|\batomic_cancel|\batomic_commit|\batomic_noexcept|\bauto|\bbitand|\bbitor|\bbreak|\bcase|\bcatch|\bclass|\bcompl|\bconcept|\bconst|\bconsteval|\bconstexpr|\bconstini|\bconst_cast|\bcontinue|\bco_await|\bco_return|\bco_yield|\bdecltype|\bdefault|\bdelete|\bdelete[]|\bdo|\bdynamic_cast|\belse|\benum|\bexplicit|\bexport|\bextern|\bfalse|\bfor|\bfriend|\bgoto|\bif|\binline|\bmutable|\bnamespace|\bnew|\bnoexcept|\bnot|\bnot_eq|\bnullptr|\boperator|\bor|\bor_eq|\bprivate|\bprotected|\bpublic|\breflexpr|\bregister|\breinterpret_cast|\brequires|\breturn|\bsigned|\bsizeof|\bstatic|\bstatic_assert|\bstatic_cast|\bstruct|\bswitch|\bsynchronized|\btemplate|\bthis|\bthread_local|\bthrow|\btrue|\btry|\btypedef|\btypeid|\btypename|\bunion|\busing|\bvirtual|\bvolatile|\bwhile|\bxor|\bxor_eq|\bvoid|\bchar|\bshort|\bint|\blong|\blong long|\bdouble|\bfloat|\bbool|\bintmax_t|\buintmax_t|\bint8_t|\buint8_t|\bint16_t|\buint16_t|\bint32_t|\buint32_t|\bint64_t|\buint64_t|\bint_least8_t|\buint_least8_t|\bint_least16_t|\buint_least16_t|\bint_least32_t|\buint_least32_t|\bint_least64_t|\buint_least64_t|\bint_fast8_t|\buint_fast8_t|\bint_fast16_t|\buint_fast16_t|\bint_fast32_t|\buint_fast32_t|\bint_fast64_t|\buint_fast64_t|\bintptr_t|\buintptr_t'):changeTheme["keywordStyle"],
+          RegExp(r'_?\balignas|\balignof|\band|\band_eq|\basm|\batomic_cancel|\batomic_commit|\batomic_noexcept|\bauto|\bbitand|\bbitor|\bbreak|\bcase|\bcatch|\bclass|\bcompl|\bconcept|\bconst|\bconsteval|\bconstexpr|\bconstini|\bconst_cast|\bcontinue|\bco_await|\bco_return|\bco_yield|\bdecltype|\bdefault|\bdelete|\bdelete[]|\bdo|\bdynamic_cast|\belse|\benum|\bexplicit|\bexport|\bextern|\bfalse|\bfor|\bfriend|\bgoto|\bif|\binline|\bmutable|\bnamespace|\bnew|\bnoexcept|\bnot|\bnot_eq|\bnullptr|\boperator|\bor|\bor_eq|\bintmax_t|\buintmax_t|\bint8_t|\buint8_t|\bint16_t|\buint16_t|\bint32_t|\buint32_t|\bint64_t|\buint64_t|\bint_least8_t|\buint_least8_t|\bint_least16_t|\buint_least16_t|\bint_least32_t|\buint_least32_t|\bint_least64_t|\buint_least64_t|\bint_fast8_t|\buint_fast8_t|\bint_fast16_t|\buint_fast16_t|\bint_fast32_t|\buint_fast32_t|\bint_fast64_t|\buint_fast64_t|\bintptr_t|\buintptr_t|\bprivate|\bprotected|\bpublic|\breflexpr|\bregister|\breinterpret_cast|\brequires|\breturn|\bsigned|\bsizeof|\bstatic|\bstatic_assert|\bstatic_cast|\bstruct|\bswitch|\bsynchronized|\btemplate|\bthis|\bthread_local|\bthrow|\btrue|\btry|\btypedef|\btypeid|\btypename|\bunion|\busing|\bvirtual|\bvolatile|\bwhile|\bxor|\bxor_eq|\bvoid|\bchar|\bshort|\bint|\blong|\blong long|\bdouble|\bfloat|\bbool'):changeTheme["keywordStyle"],
           
           RegExp(r'[A-Z](\w+)'):changeTheme["classStyle"],
           RegExp(r'\w+'): changeTheme["baseStyle"],
@@ -289,7 +289,7 @@ class Controller {
       );
         
         break;
-      case "swift":
+      case "Swift":
       return RichTextController(
           patternMap: {
             
@@ -368,7 +368,49 @@ class Controller {
          
       );
         
-        break;          
+        break;
+
+      case "python":
+        return RichTextController(
+          patternMap: {
+            
+           
+            RegExp(r'# (.)*\n'): changeTheme["commentStyle"],
+
+
+            RegExp(r'r".*"'): changeTheme["stringStyle"],
+            RegExp(r"r'.*'"): changeTheme["stringStyle"],
+            RegExp(r'"""(?:[^"\\]|\\(.|\n))*"""'): changeTheme["stringStyle"],
+            RegExp(r"'''(?:[^'\\]|\\(.|\n))*'''"): changeTheme["stringStyle"],
+            
+            RegExp(r'"(?:[^"\\]|\\.)*"'): changeTheme["stringStyle"],
+            RegExp(r"'(?:[^'\\]|\\.)*'"): changeTheme["stringStyle"],
+
+            RegExp(r'\d+\.\d+'): changeTheme["numberStyle"],
+            RegExp(r'\d+'): changeTheme["numberStyle"],
+
+            RegExp(r'[\[\]{}().!=<>&\|\?\+\-\*/%\^~;:,]'):
+                changeTheme["punctuationStyle"],
+
+            RegExp(r'@\w+'): changeTheme["keywordStyle"],
+
+            RegExp(r'\bFalse|\bNone|\bTrue|\band|\bassert|\basync|\bas|\bawait|\bbreak|\bclass|\bcontinue|\bdef|\bdel|\belif|\belse|\bexcept|\bfinally|\bfor|\bfrom|\bglobal|\bif|\bimport|\bin|\bis|\blambda|\bnonlocal|\bnot|\bor|\bpass|\braise|\breturn|\btry|\bwhile|\bwith|\byield'):
+                changeTheme["keywordStyle"],
+            RegExp(r'[A-Z](\w+)'): changeTheme["classStyle"],
+
+            RegExp(r'\w+'): changeTheme["baseStyle"],
+
+            
+            RegExp(r'"""(?:[^"\\]|\\(.|\n))*"""'): changeTheme["commentStyle"],
+             RegExp(r"'''(?:[^'\\]|\\(.|\n))*'''"): changeTheme["commentStyle"],
+          },
+        );
+      
+
+      break;
+
+
+                
 
 
       default:
