@@ -370,6 +370,43 @@ class Controller {
         
         break;          
 
+        case "go":
+      return RichTextController(
+          patternMap: {
+            
+      /// Block comments
+          RegExp('/\\*+[^*]*\\*+(?:[^/*][^*]*\\*+)*/'): changeTheme["commentStyle"],  
+      /// Line comments
+          RegExp(r'//(.)*\n'):changeTheme["commentStyle"],     
+            
+        /// Raw r"String"
+          
+          RegExp(r'r".*"'):changeTheme["stringStyle"],
+            
+            
+         /// Multiline `String`
+          RegExp(r'`(?:[^"\\]|\\(.|\n))*`'):changeTheme["stringStyle"],
+            
+           
+            /// "String" "value"
+          RegExp(r'"(?:[^"\\]|\\.)*"'):changeTheme["stringStyle"],
+           
+           RegExp(r'\d+\.\d+'): changeTheme["numberStyle"],
+          RegExp(r'\d+'):changeTheme["numberStyle"],
+          RegExp(r'[\[\]{}().!=<>&\|\?\+\-\*/%\^~;:,]'):changeTheme["punctuationStyle"],
+          RegExp(r'@\w+'):changeTheme["keywordStyle"],
+          RegExp(r'\bint|\bint8|\bint16|\bint32|\bint64|\buint|\buint8|\buint16|\buint32|\buint64|\buintptr|\bfloat32|\bfloat64|\bcomplex128|\bcomplex64|\bbool|\bbyte|\brune|\bstring|\berror|\btrue|\bfalse|\biota|\bnil|\bmake|\blen|\bcap|\bnew|\bappend|\bcopy|\bclose|\b|\bdelete|\bcomplex
+          |\breal|\bimag|\bpanic|\brecover|\break|\bdefault|\bfunc|\binterface|\bselect|\bcase|\bdefer|\bgo|\bmap|\bstruct|\bchan|\belse|\bgoto|\bpackage|\bswitch|\bconst|\bfallthrough|\bif|\brange|\btype|\bcontinue|\bfor|\bimport|\breturn|\bvar
+'):changeTheme["keywordStyle"],
+          RegExp(r'[A-Z](\w+)'):changeTheme["classStyle"],
+          
+          RegExp(r'\w+'): changeTheme["baseStyle"],
+          },
+        
+         
+      );
+        
+        break;
 
       default:
     }
