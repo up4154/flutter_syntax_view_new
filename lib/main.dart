@@ -66,7 +66,7 @@ void main() {
 /* And there
         you have it */""";
 
-  int numLines = '\n'.allMatches(code).length + 1;
+  int numLines = '\n'.allMatches(code).length + 100;
 
   static RichTextController _controller =
       Controller().controller("dart", changeTheme);

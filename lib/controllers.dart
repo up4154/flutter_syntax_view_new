@@ -58,7 +58,7 @@ class Controller {
 
             RegExp(r'@\w+'): changeTheme["keywordStyle"],
 
-            RegExp(r'\babstract|\bvoid|\bimport|\bas|\bclass|\blate|\bint|\bfinal|\bbool|\bif|\belse|\bget'):
+            RegExp(r'\bassert|\bbreak|\bcase|\bcatch|\bclass|\bconst|\bcontinue|\bdefault|\bdo|\belse|\benum|\bextends|\bfalse|\bfinal|\bfinally|\bfor|\bif|\bin|\bis|\bnew|\bnull|\brethrow|\breturn|\bsuper|\bswitch|\bthis|\bthrow|\btrue|\btry|\bvar|\bvoid|\bwhile|\bwith|\basync|\bhide|\bon|\bshow|\bsync|\babstract|\bas|\bcovariant|\bdeferred|\bdynamic|\bexport|\bextension|\bexternal|\bfactory|\bfunction|\bget|\bimplements|\bimport|\binterface|\blibrary|\bmixin|\boperator|\bpart|\bset|\bstatic|\btypedef|\bawait|\byield'):
                 changeTheme["keywordStyle"],
             RegExp(r'[A-Z](\w+)'): changeTheme["classStyle"],
 
