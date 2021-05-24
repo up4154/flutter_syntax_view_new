@@ -253,21 +253,20 @@ void main() {
                                   style: TextStyle(color: Colors.black),
                                   onChanged: (val) {
                                     code = val;
-                                    setState(() {
-                                      numLines =
-                                          '\n'.allMatches(code).length + 1;
-                                    });
+                                    if (numLines <= '\n'.allMatches(code).length + 1) {
+                                      setState(() {
+                                        numLines = '\n'.allMatches(code).length + 100;
+                                      });
+                                    }
                                   },
                                   enableInteractiveSelection: true,
                                   selectionColor: Colors.blue[100],
-                                  
                                   toolbarOptions: ToolbarOptions(
                                       copy: true,
                                       cut: true,
                                       paste: true,
                                       selectAll: true),
                                 ),
-                                
                               ),
                             ),
                           ),
