@@ -447,6 +447,55 @@ class Controller {
       );
         
         break;
+        case "perl":
+      return RichTextController(
+          patternMap: {
+            
+      /// Block comments
+          RegExp('/\\*+[^*]*\\*+(?:[^/*][^*]*\\*+)*/'): changeTheme["commentStyle"],  
+      /// Line comments
+          RegExp(r'# (.)*\n'): changeTheme["commentStyle"],     
+            
+        /// Raw r"String"
+          
+          RegExp(r'r".*"'):changeTheme["stringStyle"],
+            
+            
+         /// Multiline `String`
+          RegExp(r'`(?:[^"\\]|\\(.|\n))*`'):changeTheme["stringStyle"],
+            
+           
+            /// "String" "value"
+          RegExp(r'"(?:[^"\\]|\\.)*"'):changeTheme["stringStyle"],
+           /// 'String' 'value'
+          RegExp(r"'(?:[^'\\]|\\.)*'"):changeTheme["stringStyle"],
+           RegExp(r'\d+\.\d+'): changeTheme["numberStyle"],
+          RegExp(r'\d+'):changeTheme["numberStyle"],
+          RegExp(r'[\[\]{}().!=<>&\|\?\+\-\*/%\^~;:,]'):changeTheme["punctuationStyle"],
+          RegExp(r'@\w+'):changeTheme["keywordStyle"],
+          RegExp(r'\b-A|\bEND|\blength|\bsetpgrp|\b-B|\bendgrent|\blink|\bsetpriority-b|\bendhostent|\blisten|\bsetprotoent-C|\bendnetent|\blocal|\bsetpwent-c|\bendprotoent|\blocaltime|\bsetservent-d|\bendpwent|\blog|\bsetsockopt-e|\bendservent|\blstat|\bshift-f|\beof|\bmap|\bshmctl-g|\beval|\bmkdir|\bshmget-k|\bexec|\bmsgctl|\bshmread-l|\bexists|\bmsgget|\bshmwrite-M|\bexit|\bmsgrcv|\bshutdown-O|\bfcntl|\bmsgsnd|\bsin-o|\bfileno|\bmy|\bsleep-p|\bflock|\bnext|\bsocket-r|\bfork|\bnot|\bsocketpair-R|\bformat|\boct|\bsort-S|\bformline|\bopen|\bsplice-s|\bgetc|\bopendir|\bsplit-T|\bgetgrent|\bord|\bsprintf-t|\bgetgrgid|\bour|\bsqrt-u|\bgetgrnam|\bpack|\bsrand-w|\bgethostbyaddr|\bpipe|\bstat-W|\bgethostbyname|\bpop|\bstate-X|\bgethostent|\bpos|\bstudy-x|\bgetlogin|\bprint|\bsubstr-z|\bgetnetbyaddr|\bprintf|\bsymlinkabs|\bgetnetbyname|\bprototype|\bsyscallaccept|\bgetnetent|\bpush|\bsysopenalarm|\bgetpeername|\bquotemeta
+          |\bsysreadatan2|\bgetpgrp|\brand|\bsysseekAUTOLOAD|\bgetppid|\bread|\bsystemBEGIN|\bgetpriority|\breaddir|\bsyswritebind|\bgetprotobyname
+          |\breadline|\btellbinmode|\bgetprotobynumber|\breadlink|\btelldirbless|\bgetprotoent|\breadpipe|\btiebreak|\bgetpwent|\brecv|\btiedcaller
+          |\bgetpwnam|\bredo|\btimechdir|\bgetpwuid|\bref|\btimesCHECK|\bgetservbyname|\brename|\btruncatechmod|\bgetservbyport|\brequire|\bucchomp
+          |\bgetservent|\breset|\bucfirstchop|\bgetsockname|\breturn|\bumaskchown|\bgetsockopt|\breverse|\bundefchr|\bglob|\brewinddir
+          |\bUNITCHECKchroot|\bgmtime|\brindex|\bunlinkclose|\bgoto|\brmdir|\bunpackclosedir|\bgrep|\bsay|\bunshiftconnect|\bhex|\bscalar
+          |\buntiecos|\bindex|\bseek|\busecrypt|\bINIT|\bseekdir|\butimedbmclose|\bint|\bselect|\bvaluesdbmopen|\bioctl|\bsemctl|\bvecdefined
+          |\bjoin|\bsemget|\bwaitdelete|\bkeys|\bsemop|\bwaitpidDESTROY|\bkill|\bsend|\bwantarraydie|\blast|\bsetgrent|\bwarndump|\blc|\bsethostent
+          |\bwriteeach|\blcfirst|\bsetnetent|\b_DATA_|\belse|\block|\bqw_END_|\belsif|\blt|\bqx_FILE_|\beq|\bm|\bs_LINE_|\bexp|\bne|\bsub_PACKAGE_
+          |\bfor|\bno|\btrand|\bforeach|\bor|\bunlesscmp|\bge|\bpackage|\buntilcontinue|\bgt|\bq|\bwhileCORE|\bif|\bqq|\bxordo|\ble|\bqr|\by\$!
+          |\b\$^RE_TRIE_MAXBUF|\b\$LAST_REGEXP_CODE_RESULT\$"|\b\$^S|\b\$LIST_SEPARATOR\$#|\b\$^T|\b\$MATCH\$\$|\b\$^TAINT|\b\$MULTILINE_MATCHING\$%
+          |\b\$^UNICODE|\b\$NR\$&|\b\$^UTF8LOCALE|\b\$^V|\b\$OFS\$(|\b\$^W|\b\$ORS\$)|\b\$^WARNING_BITS|\b\$OS_ERROR\$*|\b\$^WIDE_SYSTEM_CALLS|\b\$OSNAME\$+|\b\$^X|\b\$OUTPUT_AUTO_FLUSH\$,|\b\$|\b\$OUTPUT_FIELD_SEPARATOR\$-|\b\$`|\b\$OUTPUT_RECORD_SEPARATOR\$.|\b\$a|\b\$PERL_VERSION\$/|\b\$ACCUMULATOR|\b\$PERLDB\$0|\b\$ARG|\b\$PID\$:|\b\$ARGV|\b\$POSTMATCH\$;|\b\$b|\b\$PREMATCH\$<|\b\$BASETIME|\b\$PROCESS_ID\$=|\b\$CHILD_ERROR|\b\$PROGRAM_NAME\$>|\b\$COMPILING|\b\$REAL_GROUP_ID\$?|\b\$DEBUGGING|\b\$REAL_USER_ID\$@|\b\$EFFECTIVE_GROUP_ID|\b\$RS\$[|\b\$EFFECTIVE_USER_ID|\b\$SUBSCRIPT_SEPARATOR\$\|\b\$EGID|\b\$SUBSEP\$]|\b\$ERRNO|\b\$SYSTEM_FD_MAX\$^|\b\$EUID|\b\$UID\$^A|\b\$EVAL_ERROR|\b\$WARNING\$^C|\b\$EXCEPTIONS_BEING_CAUGHT|\b\$|\$^CHILD_ERROR_NATIVE|\b\$EXECUTABLE_NAME|\b\$~\$^D|\b\$EXTENDED_OS_ERROR|\b%!\$^E|\b\$FORMAT_FORMFEED|\b%^H\$^ENCODING|\b\$FORMAT_LINE_BREAK_CHARACTERS|\b%ENV\$^F|\b\$FORMAT_LINES_LEFT|\b%INC\$^H|\b\$FORMAT_LINES_PER_PAGE|\b%OVERLOAD\$^I|\b\$FORMAT_NAME|\b%SIG\$^L|\b\$FORMAT_PAGE_NUMBER|\b@+\$^M|\b\$FORMAT_TOP_NAME|\b@-\$^N|\b\$GID|\b@\$^O|\b\$INPLACE_EDIT|\b@ARGV\$^OPEN|\b\$INPUT_LINE_NUMBER|\b@INC\$^P|\b\$INPUT_RECORD_SEPARATOR|\b@LAST_MATCH_START\$^R|\b\$LAST_MATCH_END|\b\$^RE_DEBUG_FLAGS|\b\$LAST_PAREN_MATCH|\bARGV|\bSTDERR|\bSTDOUTARGVOUT|\bSTDIN|\b|\b%+|\bEXTENDED_OS_ERROR|\bPERL_DESTRUCT_LEVEL%-|\bfail|\bPERL_DL_NONLAZY1|\bFETCH|\bPERL_ENCODING2|\bFETCHSIZE|\bPERL_HASH_SEED3|\bfile_name_is_absolute|\bPERL_HASH_SEED_DEBUG4|\bfileparse|\bPERL_ROOT5|\bfileparse_set_fstype|\bPERL_SIGNALS6|\bfind|\bPERL_UNICODE7|\bfinddepth|\bPERL_VERSION8|\bFIRSTKEY|\bPERLDB9|\bFORMAT_FORMFEED|\bPERLIO:bytes|\bFORMAT_LINE_BREAK_CHARACTERS|\bPERLIO_DEBUG:crlf|\bFORMAT_LINES_LEFT|\bPERLLIB:mmap|\bFORMAT_LINES_PER_PAGE|\bPID:perlio|\bFORMAT_NAME|\bplan:pop|\bFORMAT_PAGE_NUMBER|\bpod:raw|\bFORMAT_TOP_NAME|\bPOP:stdio|\bfreeze|\bPOSTMATCH:unix|\bGETC|\bPREMATCH:utf8|\bGetOptions|\bPRINT:win32|\bGID|\bPRINTF@F|\bhead1|\bPROCESS_ID_|\bhead2|\bPROGRAM_NAME_DIE_|\bhead3|\bPUSH_WARN_|\bhead4|\bRE_DEBUG_FLAGSa|\bHOME|\bRE_TRIE_MAXBUFabs2rel|\bINC|\bREADACCUMULATOR|\bINPLACE_EDIT|\bREADLINEARG|\bINPUT_LINE_NUMBER|\bREAL_GROUP_IDb|\bINPUT_RECORD_SEPARATOR|\bREAL_USER_IDback|\bis|\brel2absbasename|\bis_deeply|\brequire_okBASETIME|\bISA|\brmscopybegin|\bisa|\brmtreebuilder|\bisa_ok|\brootdircan|\bisnt|\bRScan_ok|\bitem|\bsafe_levelcanonpath|\bLAST_MATCH_END|\bSHIFTcarp|\bLAST_MATCH_START|\bshortmesscase_tolerant|\bLAST_PAREN_MATCH|\bSIGcatdir|\bLAST_REGEXP_CODE_RESULT|\bskipcatfile|\bLAST_SUBMATCH_RESULT|\bSKIP:catpath|\blike|\bSPLICECHILD_ERROR|\bLIST_SEPARATOR|\bsplitdirCHILD_ERROR_NATIVE|\bLOGDIR|\bsplitpathCLEAR|\blongmess|\bSTORECLOSE|\bMATCH|\bSTORESIZEcluck|\bmkdtemp|\bSUBSCRIPT_SEPARATORcmp_ok|\bmkpath|\bSUBSEPCOMPILING|\bmkstemp|\bSYSTEM_FD_MAXconfess|\bmkstemps|\bTAINTcopy|\bmktemp|\btempdircp|\bmove|\btempfilecroak|\bMULTILINE_MATCHING|\bthawcurdir|\bmv|\bTIEARRAYcut|\bNEXTKEY|\bTIEHANDLEDATA|\bno_upwards|\bTIEHASHDEBUGGING|\bNR|\bTIESCALARDELETE|\bOFS|\btmpdirdevnull|\bok|\btmpfilediag|\bOPEN|\btmpnamdirname|\bORS|\bTODO:EFFECTIVE_GROUP_ID|\bOS_ERROR|\btodo_skipEFFECTIVE_USER_ID|\bOSNAME|\bUIDEGID|\bOUTPUT_AUTOFLUSH|\bUNICODEENCODING|\bOUTPUT_FIELD_SEPARATOR|\bunlikeend|\bOUTPUT_RECORD_SEPARATOR|\bunlink0ENV|\bover|\bUNSHIFTeq_array|\bpass|\bUNTIEeq_hash|\bPATH|\bupdireq_set|\bpath|\buse_okERRNO|\bPERL5DB|\bUTF8CACHEEUID|\bPERL5DB_THREADED|\bUTF8LOCALEEVAL_ERROR|\bPERL5LIB|\bVERSIONEXCEPTIONS_BEING_CAUGHT|\bPERL5OPT|\bWARNINGEXECUTABLE_NAME|\bPERL5SHELL|\bWARNING_BITSEXISTS|\bPERL_ALLOW_NON_IFS_LSP|\bWIN32_SLOPPY_STATEXTEND|\bPERL_DEBUG_MSTATS|\bWRITE
+'):changeTheme["keywordStyle"],
+          RegExp(r"|\b\$OFMT\$\'"):changeTheme["keywordStyle"],
+          RegExp(r'[A-Z](\w+)'):changeTheme["classStyle"],
+          
+          RegExp(r'\w+'): changeTheme["baseStyle"],
+          },
+        
+         
+      );
+        
+        break;
 
       default:
     }
